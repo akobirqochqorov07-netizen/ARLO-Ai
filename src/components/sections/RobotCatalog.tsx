@@ -3,11 +3,28 @@
 import { useRobot, robots, RobotType } from "@/components/global/RobotContext";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { Volume2, Play, Pause } from "lucide-react";
 
 export default function RobotCatalog() {
     const { selectedRobot, setSelectedRobot } = useRobot();
     const [shockwaveId, setShockwaveId] = useState<number | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const playVoice = (robot: RobotType, e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (audioRef.current) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+        }
+
+        const audio = new Audio(robot.voiceUrl);
+        audioRef.current = audio;
+        audio.play();
+        setIsPlaying(true);
+        audio.onended = () => setIsPlaying(false);
+    };
 
     const handleSelect = (robot: RobotType) => {
         setSelectedRobot(robot);
@@ -104,9 +121,20 @@ export default function RobotCatalog() {
                                 </div>
                             </div>
 
-                            <div className="mt-6 text-gray-400 text-center text-sm z-10 leading-relaxed font-medium">
+                            <div className="mt-6 text-gray-400 text-center text-sm z-10 leading-relaxed font-medium mb-6">
                                 {robot.character}
                             </div>
+
+                            <button
+                                onClick={(e) => playVoice(robot, e)}
+                                className="mt-auto w-full py-3 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-2 group/btn active:scale-95 transition-all z-10"
+                                style={{ backgroundColor: isSelected ? `${robot.color}15` : "rgba(255,255,255,0.02)" }}
+                            >
+                                <Volume2 className="w-4 h-4 transition-colors" style={{ color: isSelected ? robot.color : "rgba(255,255,255,0.4)" }} />
+                                <span className="text-[10px] uppercase font-mono tracking-[0.2em] font-bold text-white/50 group-hover/btn:text-white transition-colors">
+                                    Initialize Voice
+                                </span>
+                            </button>
 
                             {isSelected && (
                                 <motion.div
