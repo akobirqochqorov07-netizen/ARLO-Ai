@@ -56,7 +56,7 @@ export default function Outro() {
                 />
             </div>
 
-            <div className="absolute inset-0 z-0 opacity-[0.05]" style={{ backgroundImage: `url(${getAssetPath('/noise.png')})` }} />
+            <div className="absolute inset-0 z-0 opacity-10 bg-zinc-900/20" />
 
             <div className="relative z-10 flex flex-col items-center w-full max-w-4xl">
 
@@ -119,6 +119,7 @@ export default function Outro() {
                         {/* STAGE 2: TERMINAL HACKING SIMULATION */}
                         {deployState === "simulating" && (
                             <motion.div key="simulating" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} className="w-full glassmorphism p-8 rounded-2xl border border-white/10 bg-black/90 shadow-2xl font-mono text-sm overflow-hidden relative">
+                                <div className="absolute inset-0 opacity-20 z-0 bg-zinc-900/40" />
                                 <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: selectedRobot.color }}>
                                     <motion.div animate={{ x: ["-100%", "100%"] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-1/2 h-full bg-white/50" />
                                 </div>
