@@ -7,7 +7,8 @@ export type RobotType = {
     id: number;
     name: string;
     image: string;
-    voiceUrl: string; // Added voiceUrl
+    voiceUrl: string;
+    elevenLabsVoiceId: string; // Added ElevenLabs Voice ID
     color: string;
     intellect: string;
     emotion: string;
@@ -15,12 +16,12 @@ export type RobotType = {
 };
 
 export const robots: RobotType[] = [
-    { id: 1, name: "Alpha", image: getAssetPath("/robot1.png"), voiceUrl: getAssetPath("/audio/voice_preview_larry - friendly and robotic.mp3"), color: "#5B4EE8", intellect: "Logical & Structured", emotion: "Calm, Professional", character: "An analytical mastermind built for problem-solving and coding navigation." },
-    { id: 2, name: "Spark", image: getAssetPath("/robot2.png"), voiceUrl: getAssetPath("/audio/voice_preview_barnaby bunny  - funny easter character.mp3"), color: "#FF5500", intellect: "Creative & Fluid", emotion: "Energetic, Enthusiastic", character: "Your brainstorming partner. Perfect for drafting creative texts and ideation." },
-    { id: 3, name: "Zen", image: getAssetPath("/robot3.png"), voiceUrl: getAssetPath("/audio/voice_preview_yumi - slow, robotic and calm.mp3"), color: "#00D1FF", intellect: "Meditative & Focused", emotion: "Tranquil, Grounding", character: "Keeps you in the flow state. Eliminates distractions and boosts deep work." },
-    { id: 4, name: "Nexus", image: getAssetPath("/robot4.png"), voiceUrl: getAssetPath("/audio/voice_preview_daria - funny creepy witch.mp3"), color: "#FF00A0", intellect: "Empathetic & Intuitive", emotion: "Warm, Understanding", character: "Excellent at nuanced communication, email drafting, and team collaboration." },
-    { id: 5, name: "Chronos", image: getAssetPath("/robot5.png"), voiceUrl: getAssetPath("/audio/voice_preview_matthew schmitz - robotic and deadpan.mp3"), color: "#00FF66", intellect: "Calculated & Swift", emotion: "Urgent, Precise", character: "Master of scheduling, memory recall, and executing tasks at lightning speed." },
-    { id: 6, name: "Omni", image: getAssetPath("/robot6.png"), voiceUrl: getAssetPath("/audio/voice_preview_hakan yayla - robotic, imposing villain.mp3"), color: "#FFFFFF", intellect: "Adaptive & Boundless", emotion: "Mysterious, Powerful", character: "The pinnacle synthetic intelligence combining all attributes into one entity." }
+    { id: 1, name: "Alpha", image: getAssetPath("/robot1.png"), voiceUrl: getAssetPath("/audio/voice_preview_larry - friendly and robotic.mp3"), elevenLabsVoiceId: "TxGEqnSAs9auCw9LieRL", color: "#5B4EE8", intellect: "Logical & Structured", emotion: "Calm, Professional", character: "An analytical mastermind built for problem-solving and coding navigation." },
+    { id: 2, name: "Spark", image: getAssetPath("/robot2.png"), voiceUrl: getAssetPath("/audio/voice_preview_barnaby bunny  - funny easter character.mp3"), elevenLabsVoiceId: "ErXw9S1dp96E87HWB6k9", color: "#FF5500", intellect: "Creative & Fluid", emotion: "Energetic, Enthusiastic", character: "Your brainstorming partner. Perfect for drafting creative texts and ideation." },
+    { id: 3, name: "Zen", image: getAssetPath("/robot3.png"), voiceUrl: getAssetPath("/audio/voice_preview_yumi - slow, robotic and calm.mp3"), elevenLabsVoiceId: "EXAVITQu4vr4xnSDxMaL", color: "#00D1FF", intellect: "Meditative & Focused", emotion: "Tranquil, Grounding", character: "Keeps you in the flow state. Eliminates distractions and boosts deep work." },
+    { id: 4, name: "Nexus", image: getAssetPath("/robot4.png"), voiceUrl: getAssetPath("/audio/voice_preview_daria - funny creepy witch.mp3"), elevenLabsVoiceId: "21m00T83T44xe8Sl7t3y", color: "#FF00A0", intellect: "Empathetic & Intuitive", emotion: "Warm, Understanding", character: "Excellent at nuanced communication, email drafting, and team collaboration." },
+    { id: 5, name: "Chronos", image: getAssetPath("/robot5.png"), voiceUrl: getAssetPath("/audio/voice_preview_matthew schmitz - robotic and deadpan.mp3"), elevenLabsVoiceId: "pNInz6obpgDQGcFmaJgB", color: "#00FF66", intellect: "Calculated & Swift", emotion: "Urgent, Precise", character: "Master of scheduling, memory recall, and executing tasks at lightning speed." },
+    { id: 6, name: "Omni", image: getAssetPath("/robot6.png"), voiceUrl: getAssetPath("/audio/voice_preview_hakan yayla - robotic, imposing villain.mp3"), elevenLabsVoiceId: "AZnzlk1Xhk9WJ6Y7S4G2", color: "#FFFFFF", intellect: "Adaptive & Boundless", emotion: "Mysterious, Powerful", character: "The pinnacle synthetic intelligence combining all attributes into one entity." }
 ];
 
 type RobotContextType = {

@@ -4,13 +4,15 @@ import { useRobot, robots, RobotType } from "@/components/global/RobotContext";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
-import { Volume2, Play, Pause } from "lucide-react";
+import { Volume2, Play, Pause, Sparkles, Loader2 } from "lucide-react";
+import { generateSpeech } from "@/lib/elevenlabs";
 
 export default function RobotCatalog() {
     const { selectedRobot, setSelectedRobot } = useRobot();
     const [shockwaveId, setShockwaveId] = useState<number | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isGenerating, setIsGenerating] = useState<number | null>(null);
 
     const playVoice = (robot: RobotType, e: React.MouseEvent) => {
         e.stopPropagation();
@@ -24,6 +26,29 @@ export default function RobotCatalog() {
         audio.play();
         setIsPlaying(true);
         audio.onended = () => setIsPlaying(false);
+    };
+
+    const handleAISpeak = async (robot: RobotType, e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (isGenerating) return;
+
+        setIsGenerating(robot.id);
+        const audioUrl = await generateSpeech(robot.character, robot.elevenLabsVoiceId);
+        setIsGenerating(null);
+
+        if (audioUrl) {
+            if (audioRef.current) {
+                audioRef.current.pause();
+            }
+            const audio = new Audio(audioUrl);
+            audioRef.current = audio;
+            audio.play();
+            setIsPlaying(true);
+            audio.onended = () => {
+                setIsPlaying(false);
+                URL.revokeObjectURL(audioUrl);
+            };
+        }
     };
 
     const handleSelect = (robot: RobotType) => {
@@ -109,16 +134,37 @@ export default function RobotCatalog() {
                                 {robot.character}
                             </div>
 
-                            <button
-                                onClick={(e) => playVoice(robot, e)}
-                                className="mt-auto w-full py-3 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-2 group/btn active:scale-95 transition-all z-10"
-                                style={{ backgroundColor: isSelected ? `${robot.color}15` : "rgba(255,255,255,0.02)" }}
-                            >
-                                <Volume2 className="w-4 h-4 transition-colors" style={{ color: isSelected ? robot.color : "rgba(255,255,255,0.4)" }} />
-                                <span className="text-[10px] uppercase font-mono tracking-[0.2em] font-bold text-white/50 group-hover/btn:text-white transition-colors">
-                                    Initialize Voice
-                                </span>
-                            </button>
+                            <div className="mt-auto w-full flex flex-col gap-3 z-10">
+                                <button
+                                    onClick={(e) => playVoice(robot, e)}
+                                    className="w-full py-3 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-2 group/btn active:scale-95 transition-all"
+                                    style={{ backgroundColor: isSelected ? `${robot.color}15` : "rgba(255,255,255,0.02)" }}
+                                >
+                                    <Volume2 className="w-4 h-4 transition-colors" style={{ color: isSelected ? robot.color : "rgba(255,255,255,0.4)" }} />
+                                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] font-bold text-white/50 group-hover/btn:text-white transition-colors">
+                                        Initialize Voice
+                                    </span>
+                                </button>
+
+                                <button
+                                    onClick={(e) => handleAISpeak(robot, e)}
+                                    disabled={isGenerating !== null}
+                                    className="w-full py-3 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-2 group/btn active:scale-95 transition-all relative overflow-hidden"
+                                    style={{
+                                        backgroundColor: isSelected ? `${robot.color}30` : "rgba(255,255,255,0.05)",
+                                        borderColor: isSelected ? `${robot.color}40` : "rgba(255,255,255,0.1)"
+                                    }}
+                                >
+                                    {isGenerating === robot.id ? (
+                                        <Loader2 className="w-4 h-4 animate-spin text-white" />
+                                    ) : (
+                                        <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+                                    )}
+                                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] font-bold text-white">
+                                        {isGenerating === robot.id ? "Synthesizing..." : "AI Live Speak"}
+                                    </span>
+                                </button>
+                            </div>
 
                             {isSelected && (
                                 <motion.div
