@@ -1,4 +1,4 @@
-const ELEVEN_LABS_API_KEY = "sk_8ee5feede9bb6c0fe9994be285986bd2d8eeae1b3dfaed4f";
+const ELEVEN_LABS_API_KEY = "sk_1260c2f4ceb30c68f62c48d9396f205ef8ee7b0e80053468";
 
 export async function generateSpeech(text: string, voiceId: string) {
     try {
