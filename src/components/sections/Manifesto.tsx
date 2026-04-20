@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { BrainCircuit, Globe, Layers, ShieldCheck, Target, Zap, Fingerprint, Lock, Database } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import { getAssetPath } from "@/lib/utils";
 
 type Lang = "EN" | "UZ" | "RU";
 
@@ -258,7 +259,7 @@ export default function Manifesto() {
                                 transition={{ duration: 0.5 }}
                                 className="w-full h-[500px] rounded-3xl border border-white/10 glassmorphism relative overflow-hidden group shadow-[0_0_50px_rgba(255,255,255,0.05)] flex items-end p-10"
                             >
-                                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay z-0" />
+                                <div className="absolute inset-0 opacity-10 mix-blend-overlay z-0" style={{ backgroundImage: `url(${getAssetPath('/noise.png')})` }} />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
 
                                 {/* Visual data blocks running */}

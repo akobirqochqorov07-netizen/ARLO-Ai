@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRobot } from "@/components/global/RobotContext";
 import { TerminalSquare, Send, CheckCircle2, ShieldCheck, Cpu } from "lucide-react";
 import { useState, useEffect } from "react";
+import { getAssetPath } from "@/lib/utils";
 
 export default function Outro() {
     const { selectedRobot } = useRobot();
@@ -55,7 +56,7 @@ export default function Outro() {
                 />
             </div>
 
-            <div className="absolute inset-0 z-0 bg-[url('/noise.png')] opacity-[0.05] pointer-events-none mix-blend-overlay" />
+            <div className="absolute inset-0 z-0 opacity-[0.05]" style={{ backgroundImage: `url(${getAssetPath('/noise.png')})` }} />
 
             <div className="relative z-10 flex flex-col items-center w-full max-w-4xl">
 

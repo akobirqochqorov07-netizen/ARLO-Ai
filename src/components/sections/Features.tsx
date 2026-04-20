@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { useRobot } from "@/components/global/RobotContext";
 import { Lock, Fingerprint, Code, Server } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,7 +83,7 @@ export default function Features() {
                             <div ref={macbookRef} className="origin-bottom relative w-full aspect-[16/10] bg-zinc-950 border-[2px] border-zinc-800 rounded-t-3xl overflow-hidden shadow-2xl flex flex-col" style={{ transform: "rotateX(-8deg)" }}>
                                 <div className="w-full h-[6px] bg-black" />
                                 <div className="flex-1 w-[98%] mx-auto relative bg-black rounded-sm overflow-hidden mb-[1.5%]">
-                                    <video src="/video2.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />
+                                    <video src={getAssetPath("/video2.mp4")} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />
                                 </div>
                             </div>
                             <div className="relative w-[104%] -ml-[2%] h-4 bg-zinc-800 rounded-b-xl flex justify-center -mt-px" style={{ transform: "rotateX(85deg)" }}>
@@ -97,7 +98,7 @@ export default function Features() {
                     <div className="flex-1 flex justify-center perspective-[1000px] z-20">
                         <div ref={iphoneRef} className="relative w-[260px] h-[550px] lg:w-[320px] lg:h-[680px] rounded-[50px] bg-zinc-900 border-[8px] border-black shadow-[0_0_100px_rgba(255,255,255,0.1)] overflow-hidden">
                             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[100px] h-[30px] bg-black rounded-full z-50" />
-                            <video src="/video3.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-90" />
+                            <video src={getAssetPath("/video3.mp4")} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-90" />
                         </div>
                     </div>
                     <div className="flex-1 flex flex-col items-start justify-center mt-12 lg:mt-0 relative z-20 lg:pl-16">
@@ -116,7 +117,7 @@ export default function Features() {
                         <h2 className="text-4xl lg:text-[5rem] font-black uppercase tracking-tighter text-white leading-none">Infinite Context<br />Mesh</h2>
                     </div>
                     <div className="relative w-[90%] lg:w-[1000px] aspect-[21/9] rounded-3xl overflow-hidden glassmorphism border border-white/10 shadow-2xl">
-                        <video src="/video5.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                        <video src={getAssetPath("/video5.mp4")} autoPlay loop muted playsInline className="w-full h-full object-cover" />
                         <div className="absolute inset-0 border-[20px] border-black pointer-events-none rounded-sm" />
                         <motion.div animate={{ y: ["0%", "100%", "0%"] }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute inset-0 border-t border-[rgba(255,255,255,0.4)] shadow-[0_0_20px_#fff] mix-blend-overlay" />
                     </div>
@@ -149,7 +150,7 @@ export default function Features() {
 
                 {/* PANEL 5: SECURE ENCLAVE (New) */}
                 <div className="feature-panel panel-5 w-screen h-full flex items-center justify-center relative px-10 lg:px-32">
-                    <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')]" />
+                    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url(${getAssetPath('/noise.png')})` }} />
                     <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
                         <div className="flex justify-center order-2 lg:order-1">
@@ -194,7 +195,7 @@ export default function Features() {
                         className="relative w-full max-w-4xl aspect-video rounded-[3rem] overflow-hidden glassmorphism border-[4px] border-zinc-800 shadow-[0_0_100px_rgba(255,255,255,0.1)] p-2"
                     >
                         <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative bg-black">
-                            <video src="/video1.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />
+                            <video src={getAssetPath("/video1.mp4")} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover" />
                             <div className="absolute top-6 left-6 font-mono text-[10px] text-white/50 bg-black/50 px-4 py-1 rounded-full backdrop-blur-md border border-white/10">ARLO V1.0 INITIALIZATION</div>
                         </div>
                     </motion.div>

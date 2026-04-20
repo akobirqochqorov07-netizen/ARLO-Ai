@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { useRobot } from "@/components/global/RobotContext";
+import { getAssetPath } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,7 +97,7 @@ export default function HowItWorks() {
                         <div className="w-full h-2 bg-black" />
                         <div className="relative w-full h-full bg-black">
                             {/* VIDEO 4 plays here directly */}
-                            <video src="/video4.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity" />
+                            <video src={getAssetPath("/video4.mp4")} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity" />
 
                             {/* Frame overlay */}
                             <div className="absolute inset-0 border-[10px] border-black rounded-b-xl pointer-events-none" />
@@ -118,7 +119,7 @@ export default function HowItWorks() {
                     </div>
 
                     <div className="w-full aspect-[16/10] relative rounded-xl border border-zinc-800 overflow-hidden bg-black">
-                        <video src="/video4.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-90" />
+                        <video src={getAssetPath("/video4.mp4")} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-90" />
                     </div>
                 </div>
 

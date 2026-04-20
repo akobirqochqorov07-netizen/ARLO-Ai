@@ -1,6 +1,8 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
 
+import { getAssetPath } from "@/lib/utils";
+
 export type RobotType = {
     id: number;
     name: string;
@@ -12,12 +14,12 @@ export type RobotType = {
 };
 
 export const robots: RobotType[] = [
-    { id: 1, name: "Alpha", image: "/robot1.png", color: "#5B4EE8", intellect: "Logical & Structured", emotion: "Calm, Professional", character: "An analytical mastermind built for problem-solving and coding navigation." },
-    { id: 2, name: "Spark", image: "/robot2.png", color: "#FF5500", intellect: "Creative & Fluid", emotion: "Energetic, Enthusiastic", character: "Your brainstorming partner. Perfect for drafting creative texts and ideation." },
-    { id: 3, name: "Zen", image: "/robot3.png", color: "#00D1FF", intellect: "Meditative & Focused", emotion: "Tranquil, Grounding", character: "Keeps you in the flow state. Eliminates distractions and boosts deep work." },
-    { id: 4, name: "Nexus", image: "/robot4.png", color: "#FF00A0", intellect: "Empathetic & Intuitive", emotion: "Warm, Understanding", character: "Excellent at nuanced communication, email drafting, and team collaboration." },
-    { id: 5, name: "Chronos", image: "/robot5.png", color: "#00FF66", intellect: "Calculated & Swift", emotion: "Urgent, Precise", character: "Master of scheduling, memory recall, and executing tasks at lightning speed." },
-    { id: 6, name: "Omni", image: "/robot6.png", color: "#FFFFFF", intellect: "Adaptive & Boundless", emotion: "Mysterious, Powerful", character: "The pinnacle synthetic intelligence combining all attributes into one entity." }
+    { id: 1, name: "Alpha", image: getAssetPath("/robot1.png"), color: "#5B4EE8", intellect: "Logical & Structured", emotion: "Calm, Professional", character: "An analytical mastermind built for problem-solving and coding navigation." },
+    { id: 2, name: "Spark", image: getAssetPath("/robot2.png"), color: "#FF5500", intellect: "Creative & Fluid", emotion: "Energetic, Enthusiastic", character: "Your brainstorming partner. Perfect for drafting creative texts and ideation." },
+    { id: 3, name: "Zen", image: getAssetPath("/robot3.png"), color: "#00D1FF", intellect: "Meditative & Focused", emotion: "Tranquil, Grounding", character: "Keeps you in the flow state. Eliminates distractions and boosts deep work." },
+    { id: 4, name: "Nexus", image: getAssetPath("/robot4.png"), color: "#FF00A0", intellect: "Empathetic & Intuitive", emotion: "Warm, Understanding", character: "Excellent at nuanced communication, email drafting, and team collaboration." },
+    { id: 5, name: "Chronos", image: getAssetPath("/robot5.png"), color: "#00FF66", intellect: "Calculated & Swift", emotion: "Urgent, Precise", character: "Master of scheduling, memory recall, and executing tasks at lightning speed." },
+    { id: 6, name: "Omni", image: getAssetPath("/robot6.png"), color: "#FFFFFF", intellect: "Adaptive & Boundless", emotion: "Mysterious, Powerful", character: "The pinnacle synthetic intelligence combining all attributes into one entity." }
 ];
 
 type RobotContextType = {
