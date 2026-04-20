@@ -7,6 +7,7 @@ export async function generateSpeech(text: string, voiceId: string) {
             headers: {
                 'Content-Type': 'application/json',
                 'xi-api-key': ELEVEN_LABS_API_KEY,
+                'accept': 'audio/mpeg',
             },
             body: JSON.stringify({
                 text,
@@ -19,7 +20,13 @@ export async function generateSpeech(text: string, voiceId: string) {
         });
 
         if (!response.ok) {
-            throw new Error('ElevenLabs API request failed');
+            const errorData = await response.json().catch(() => ({}));
+            console.error('ElevenLabs API Error Details:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: errorData
+            });
+            throw new Error(`ElevenLabs API request failed with status ${response.status}`);
         }
 
         const blob = await response.blob();

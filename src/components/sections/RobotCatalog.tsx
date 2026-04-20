@@ -14,20 +14,6 @@ export default function RobotCatalog() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isGenerating, setIsGenerating] = useState<number | null>(null);
 
-    const playVoice = (robot: RobotType, e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (audioRef.current) {
-            audioRef.current.pause();
-            setIsPlaying(false);
-        }
-
-        const audio = new Audio(robot.voiceUrl);
-        audioRef.current = audio;
-        audio.play();
-        setIsPlaying(true);
-        audio.onended = () => setIsPlaying(false);
-    };
-
     const handleAISpeak = async (robot: RobotType, e: React.MouseEvent) => {
         e.stopPropagation();
         if (isGenerating) return;
@@ -130,38 +116,27 @@ export default function RobotCatalog() {
                                 </div>
                             </div>
 
-                            <div className="mt-6 text-gray-400 text-center text-sm z-10 leading-relaxed font-medium mb-6">
+                            <div className="mt-6 text-gray-400 text-center text-sm z-10 leading-relaxed font-medium mb-8">
                                 {robot.character}
                             </div>
 
-                            <div className="mt-auto w-full flex flex-col gap-3 z-10">
-                                <button
-                                    onClick={(e) => playVoice(robot, e)}
-                                    className="w-full py-3 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-2 group/btn active:scale-95 transition-all"
-                                    style={{ backgroundColor: isSelected ? `${robot.color}15` : "rgba(255,255,255,0.02)" }}
-                                >
-                                    <Volume2 className="w-4 h-4 transition-colors" style={{ color: isSelected ? robot.color : "rgba(255,255,255,0.4)" }} />
-                                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] font-bold text-white/50 group-hover/btn:text-white transition-colors">
-                                        Initialize Voice
-                                    </span>
-                                </button>
-
+                            <div className="mt-auto w-full z-10">
                                 <button
                                     onClick={(e) => handleAISpeak(robot, e)}
                                     disabled={isGenerating !== null}
-                                    className="w-full py-3 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-2 group/btn active:scale-95 transition-all relative overflow-hidden"
+                                    className="w-full py-4 rounded-xl border border-white/10 glassmorphism flex items-center justify-center gap-3 group/btn active:scale-95 transition-all relative overflow-hidden"
                                     style={{
                                         backgroundColor: isSelected ? `${robot.color}30` : "rgba(255,255,255,0.05)",
-                                        borderColor: isSelected ? `${robot.color}40` : "rgba(255,255,255,0.1)"
+                                        borderColor: isSelected ? `${robot.color}60` : "rgba(255,255,255,0.1)"
                                     }}
                                 >
                                     {isGenerating === robot.id ? (
-                                        <Loader2 className="w-4 h-4 animate-spin text-white" />
+                                        <Loader2 className="w-5 h-5 animate-spin text-white" />
                                     ) : (
-                                        <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+                                        <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
                                     )}
-                                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] font-bold text-white">
-                                        {isGenerating === robot.id ? "Synthesizing..." : "AI Live Speak"}
+                                    <span className="text-xs uppercase font-mono tracking-[0.2em] font-bold text-white group-hover/btn:text-white transition-colors">
+                                        {isGenerating === robot.id ? "Synthesizing..." : "Initialize AI Voice"}
                                     </span>
                                 </button>
                             </div>
