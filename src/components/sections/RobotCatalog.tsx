@@ -29,22 +29,6 @@ export default function RobotCatalog() {
     const handleSelect = (robot: RobotType) => {
         setSelectedRobot(robot);
         setShockwaveId(robot.id);
-
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const sentence = robot.character.split('.')[0] || "I am your assistant";
-            const msg = new SpeechSynthesisUtterance(`Entity locked. I am ${robot.name}. ${sentence}.`);
-            msg.pitch = 1.2 - (robot.id * 0.1);
-            msg.rate = 1.05;
-
-            const voices = window.speechSynthesis.getVoices();
-            // Try to find a nice english voice if possible
-            const preferred = voices.find(v => v.lang.startsWith('en') && v.name.includes('Samantha'));
-            if (preferred) msg.voice = preferred;
-
-            window.speechSynthesis.speak(msg);
-        }
-
         setTimeout(() => setShockwaveId(null), 800);
     };
 
